@@ -22,7 +22,7 @@ class DetailCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //Step 21.2 Inflate the layout for this fragment
-        _binding = FragmentDetailCategoryBinding.inflate(inflater,container,false)
+        _binding = FragmentDetailCategoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,9 +37,5 @@ class DetailCategoryFragment : Fragment() {
             tvCategoryName.text = dataName
             tvCategoryDescription.text = "Stock : $dataDesc"
         }
-    }
-
-    companion object {
-
     }
 }

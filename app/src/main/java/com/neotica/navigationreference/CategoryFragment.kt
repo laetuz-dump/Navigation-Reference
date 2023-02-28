@@ -12,6 +12,7 @@ import com.neotica.navigationreference.databinding.FragmentCategoryBinding
 class CategoryFragment : Fragment() {
     //Step 15.1: Create a null checker to the binding
     private var _binding: FragmentCategoryBinding? = null
+
     //Step 15.2 Get the binding if not null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +25,7 @@ class CategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         //Step 15.3 Inflate the layout for this fragment
-        _binding = FragmentCategoryBinding.inflate(inflater,container,false)
+        _binding = FragmentCategoryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,7 +38,8 @@ class CategoryFragment : Fragment() {
             //Step 19: Bundle PutString and PutLong to the navController -> intended action.
             mBundle.putString(EXTRA_NAME, "Lifestyle")
             mBundle.putLong(EXTRA_STOCK, 7)
-            view.findNavController().navigate(R.id.action_categoryFragment_to_detailCategoryFragment, mBundle)
+            view.findNavController()
+                .navigate(R.id.action_categoryFragment_to_detailCategoryFragment, mBundle)
         }
     }
 
