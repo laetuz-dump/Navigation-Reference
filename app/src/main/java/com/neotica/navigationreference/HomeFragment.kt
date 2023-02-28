@@ -13,13 +13,14 @@ class HomeFragment : Fragment() {
 
     //Step 11.1: Create a null checkers to the binding
     private var _binding: FragmentHomeBinding? = null
+
     //Step 11.2 get the binding if not null
-    private val binding get()= _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    //Step 11.4 Since the layout is already null checked, there's no need for null safety on View {}
+        //Step 11.4 Since the layout is already null checked, there's no need for null safety on View {}
     ): View {
         //Step 11.3 Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -31,12 +32,11 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             //Step 11.6 Apply Navigation to fragment.
-            btnCategory.setOnClickListener (
+            btnCategory.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_categoryFragment)
             )
             //Step 11.7 Apply Navigation on Activity.
-            btnProfile.setOnClickListener {
-                view ->
+            btnProfile.setOnClickListener { view ->
                 view.findNavController().navigate(R.id.action_homeFragment_to_profileActivity)
             }
         }

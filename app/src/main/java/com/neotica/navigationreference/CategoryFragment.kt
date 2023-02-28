@@ -5,55 +5,51 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.neotica.navigationreference.databinding.FragmentCategoryBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CategoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CategoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    //Step 15.1: Create a null checker to the binding
+    private var _binding: FragmentCategoryBinding? = null
+    //Step 15.2 Get the binding if not null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false)
+    ): View {
+        //Step 15.3 Inflate the layout for this fragment
+        _binding = FragmentCategoryBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //Step 17: SetonClickListener on button
+        binding.btnCategoryLifestyle.setOnClickListener { view ->
+            //Step 18: Define Bundle()
+            val mBundle = Bundle()
+            //Step 19: Bundle PutString and PutLong to the navController -> intended action.
+            mBundle.putString(EXTRA_NAME, "Lifestyle")
+            mBundle.putLong(EXTRA_STOCK, 7)
+            view.findNavController().navigate(R.id.action_categoryFragment_to_detailCategoryFragment, mBundle)
+        }
+    }
+
+    //Step 20: override onDestroy if null.
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CategoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CategoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        //Step 16: Create extra variables
+        const val EXTRA_NAME = "extra_name"
+        const val EXTRA_STOCK = "extra_stock"
     }
 }
