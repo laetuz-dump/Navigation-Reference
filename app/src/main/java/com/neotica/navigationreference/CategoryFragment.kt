@@ -33,13 +33,14 @@ class CategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //Step 17: SetonClickListener on button
         binding.btnCategoryLifestyle.setOnClickListener { view ->
-            //Step 18: Define Bundle()
-            val mBundle = Bundle()
-            //Step 19: Bundle PutString and PutLong to the navController -> intended action.
-            mBundle.putString(EXTRA_NAME, "Lifestyle")
-            mBundle.putLong(EXTRA_STOCK, 7)
-            view.findNavController()
-                .navigate(R.id.action_categoryFragment_to_detailCategoryFragment, mBundle)
+            //Step 25 Create a new variable containing navigation directions.
+            val toDetailCategoryFragment =
+                CategoryFragmentDirections.actionCategoryFragmentToDetailCategoryFragment()
+            //Step 26 SendArgs
+            toDetailCategoryFragment.name = "Lifestyle"
+            toDetailCategoryFragment.stock = 7
+            //Step 27 Find NavController and navigate to intended direction.
+            view.findNavController().navigate(toDetailCategoryFragment)
         }
     }
 
@@ -47,11 +48,5 @@ class CategoryFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        //Step 16: Create extra variables
-        const val EXTRA_NAME = "extra_name"
-        const val EXTRA_STOCK = "extra_stock"
     }
 }
