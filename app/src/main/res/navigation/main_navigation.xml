@@ -30,7 +30,14 @@
         android:id="@+id/profileActivity"
         android:name="com.neotica.navigationreference.ProfileActivity"
         android:label="activity_profile"
-        tools:layout="@layout/activity_profile" />
+        tools:layout="@layout/activity_profile">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="https://www.dicoding.com/profile" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="https://www.neotica.id" />
+    </activity>
     <fragment
         android:id="@+id/detailCategoryFragment"
         android:name="com.neotica.navigationreference.DetailCategoryFragment"
